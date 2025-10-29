@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lowkey Kultur</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* === STARTSCREEN === */
+    #startScreen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #a45b28, #f7d48f);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      color: white;
+      text-align: center;
+      transition: opacity 0.6s ease;
+    }
+
+    #startScreen h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    #codeInput {
+      padding: 10px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 6px;
+      text-align: center;
+      width: 150px;
+      outline: none;
+    }
+
+    #enterBtn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background 0.3s;
+    }
+
+    #enterBtn:hover {
+      background: #555;
+    }
+
+    #errorMsg {
+      margin-top: 10px;
+      color: #ffdede;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* === HERO === */
+    header.hero {
+      background: url('hero.jpg') center/cover no-repeat;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      position: relative;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 50px;
+      border-radius: 12px;
+      display: inline-block;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #333;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #555;
+    }
+
+    .video-gallery {
+      display: none;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .video-gallery video {
+      width: 300px;
+      margin: 10px;
+      border-radius: 10px;
+    }
+
+    footer {
+      background-color: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* --- Info Slide --- */
+    #infoSlide {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: #f7f7f7;
+      color: #222;
+      padding: 60px 30px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      text-align: center;
+      z-index: 9999;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    #infoSlide h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    #infoSlide p {
+      font-size: 1.1em;
+      max-width: 800px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    #backBtn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- === START SCREEN === -->
+  <div id="startScreen">
+    <h1>Willkommen bei Lowkey Kultur</h1>
+    <p>Bitte gib den Zugangscode ein:</p>
+    <input type="password" id="codeInput" maxlength="4" placeholder="****">
+    <button id="enterBtn">Eintreten</button>
+    <p id="errorMsg">❌ Falscher Code. Bitte versuch es erneut.</p>
+  </div>
+
+  <!-- SECTION 1: Hero -->
+  <header class="hero">
+    <div class="overlay">
+      <h1>Lowkey Kultur</h1>
+      <p>Teile deine Kultur mit der Welt</p>
+      <a href="#upload" class="btn">Jetzt starten</a>
+      <button id="infoBtn" class="btn">Info</button>
+    </div>
+  </header>
+
+  <!-- SECTION 2: Upload -->
+  <section id="upload" class="upload">
+    <h2>Video hochladen</h2>
+    <p>Lade dein Kultur-Video hoch und werde Teil unseres globalen Projekts.</p>
+    <form id="uploadForm">
+      <input type="file" accept="video/*" id="videoInput" required>
+      <button type="submit" class="btn">Hochladen</button>
+    </form>
+
+    <button id="showVideosBtn" class="btn">Bereits hochgeladene Videos anzeigen</button>
+
+    <div id="videoGallery" class="video-gallery">
+      <h3>Bereits hochgeladene Videos</h3>
+      <video controls src="video1.mp4"></video>
+      <video controls src="video2.mp4"></video>
+    </div>
+  </section>
+
+  <!-- SECTION 3: Über uns -->
+  <section class="about">
+    <h2>Über Lowkey Kultur</h2>
+    <p>
+      Wir verbinden Menschen über kulturelle Geschichten, Kunst und Musik.  
+      Unser Ziel ist es, Traditionen sichtbar zu machen und Länder miteinander zu vernetzen.  
+    </p>
+  </section>
+
+  <!-- SECTION 4: Kontakt -->
+  <section class="contact">
+    <h2>Kontakt</h2>
+    <p>Hast du Fragen? Schreib uns!</p>
+    <form>
+      <input type="text" placeholder="Dein Name" required>
+      <input type="email" placeholder="Deine E-Mail" required>
+      <textarea placeholder="Deine Nachricht" required></textarea>
+      <button type="submit" class="btn">Absenden</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Lowkey Kultur – Alle Rechte vorbehalten</p>
+  </footer>
+
+  <!-- INFO SLIDE -->
+  <div id="infoSlide">
+    <button id="backBtn">Zurück</button>
+    <h2>Der Kulturtag</h2>
+    <p>
+      Der Kulturtag ist ein besonderer Tag, an dem jeder seine Kultur vorstellen kann. 
+      Jedes Land darf eine 9. Klasse seiner Schulen auswählen, die einen Film über die eigene Kultur dreht und anschließend hochlädt. 
+      Wie genau die 9. Klasse ausgewählt wird, dürfen die Länder selbst entscheiden. 
+      Am Ende werden alle Filme aus den verschiedenen Ländern zu einem großen Film zusammengeschnitten, der dann im Kino gezeigt wird. 
+      So können alle die unterschiedlichen Kulturen kennenlernen und feiern.
+    </p>
+    <p>
+      Wenn der Film vorbei ist, kann jeder abstimmen, für welches Land er ist.  
+      Das Gewinnerland wird eingeladen, seine Kultur in der Stadt ausführlich in echt zu zeigen.
+    </p>
+    <p>
+     Der Gewinner bekommt einen kostenlosen Flug nach Hadersleben und eine Unterkunft. 
+     Dort wird ein großes Fest im Dampark veranstaltet, bei dem ihre Kultur ausführlich präsentiert wird.
+    </p>
+  </div>
+
+  <script>
+    const uploadForm = document.getElementById("uploadForm");
+    const videoInput = document.getElementById("videoInput");
+    const videoGallery = document.getElementById("videoGallery");
+    const showVideosBtn = document.getElementById("showVideosBtn");
+    const infoBtn = document.getElementById("infoBtn");
+    const infoSlide = document.getElementById("infoSlide");
+    const backBtn = document.getElementById("backBtn");
+
+    // Galerie anzeigen/ausblenden
+    showVideosBtn.addEventListener("click", function() {
+      if (videoGallery.style.display === "none" || videoGallery.style.display === "") {
+        videoGallery.style.display = "block";
+        this.textContent = "Videos ausblenden";
+      } else {
+        videoGallery.style.display = "none";
+        this.textContent = "Bereits hochgeladene Videos anzeigen";
+      }
+    });
+
+    // Wenn ein Video hochgeladen wird:
+    uploadForm.addEventListener("submit", function(e) {
+      e.preventDefault(); // kein echtes Hochladen
+      const file = videoInput.files[0];
+      if (file) {
+        const videoURL = URL.createObjectURL(file);
+        const newVideo = document.createElement("video");
+        newVideo.src = videoURL;
+        newVideo.controls = true;
+        videoGallery.appendChild(newVideo);
+        videoGallery.style.display = "block";
+        showVideosBtn.textContent = "Videos ausblenden";
+        uploadForm.reset();
+      }
+    });
+
+    // Info-Slide öffnen
+    infoBtn.addEventListener("click", () => {
+      infoSlide.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // Zurück zum Start
+    backBtn.addEventListener("click", () => {
+      infoSlide.style.display = "none";
+    });
+
+    // === Startscreen Code ===
+    const startScreen = document.getElementById("startScreen");
+    const codeInput = document.getElementById("codeInput");
+    const enterBtn = document.getElementById("enterBtn");
+    const errorMsg = document.getElementById("errorMsg");
+
+    enterBtn.addEventListener("click", () => {
+      const code = codeInput.value.trim();
+      if (code === "6767") {
+        startScreen.style.opacity = "0";
+        setTimeout(() => {
+          startScreen.style.display = "none";
+        }, 600);
+      } else {
+        errorMsg.style.display = "block";
+        codeInput.value = "";
+      }
+    });
+  </script>
+
+</body>
+</html>
